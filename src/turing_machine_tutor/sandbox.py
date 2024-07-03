@@ -1024,8 +1024,8 @@ tm_string = '''TuringMachine(
 
 tm1 = MultiTapeTuringMachine(
     states={'q0', 'q1', 'q2', 'qa', 'qr'},
-    input_alphabet={'0', '1'},
-    tape_alphabet={'0', '1', 'B'},
+    input_alphabet={'0', '1', 'X'},
+    tape_alphabet={'0', '1', 'B', 'X'},
     transition_function= {
     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
     ('q0', '0'): MultiNext('q1', '0', 'L'),
@@ -1033,7 +1033,7 @@ tm1 = MultiTapeTuringMachine(
     ('q0', 'B'): MultiNext('q1',  'B', 'L'),
     ('q1', '0'): MultiNext('q1', '0', 'L'),
     ('q1', '1'): MultiNext('q1',  '1', 'L'),
-    ('q1', 'B'): MultiNext('qa',  'B', 'R')
+    ('q1', 'X'): MultiNext('qa',  'X', 'R')
 },
     start_state='q0',
     accept_state={'qa'},
@@ -1043,8 +1043,8 @@ tm1 = MultiTapeTuringMachine(
 
 tm2 = MultiTapeTuringMachine(
     states={'q0', 'q1', 'q2', 'qa', 'qr'},
-    input_alphabet={'0', '1'},
-    tape_alphabet={'0', '1', 'B'},
+    input_alphabet={'0', '1', 'X'},
+    tape_alphabet={'0', '1', 'B', 'X'},
     transition_function= {
     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
     ('q0', '0'): MultiNext('q0', '1', 'R'),
@@ -1058,11 +1058,15 @@ tm2 = MultiTapeTuringMachine(
 )
 
 tm3 = MultiTapeTuringMachine(
-    states={'q0', 'q1', 'q2', 'q3', 'qa', 'qr'},
+    states={'qs', 'q0', 'q1', 'q2', 'q3', 'qa', 'qr'},
     input_alphabet={'0', '1'},
-    tape_alphabet={'0', '1', 'B'},
+    tape_alphabet={'0', '1', 'B', 'X'},
     transition_function= {
     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
+    ('qs', '0', 'B'): MultiNext('q0', '0', 'X', 'S', 'R'),
+    ('qs', '1', 'B'): MultiNext('q0', '1', 'X', 'S', 'R'),
+    ('qs', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
+
     ('q0', '0', 'B'): MultiNext('q1', '0', '0', 'R', 'R'),
     ('q0', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
     ('q0', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
@@ -1075,22 +1079,23 @@ tm3 = MultiTapeTuringMachine(
     ('q3', 'B', '0') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr'),
     ('q3', 'B', '1') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr')
 },
-    start_state='q0',
+    start_state='qs',
     accept_state={'qa'},
     reject_state={'qr'},
     num_tapes=2
 )
 
+controller.update_turing_machine("multi", tm3)
+
 
 inputs = ['1101', '']
 #result = tm.run(inputs)
-controller.add_turing_machine("multi", tm3)
-#controller.run_turing_machine("multi", inputs)
+controller.run_turing_machine("multi", inputs)
 #controller.run_turing_machine("multi", inputs)
 #tm2.visualize(['1101', ''],1)
 #controller.visualize_step_by_step("multi", inputs)
 
-print(tm3)
+#print(tm3)
 
 # def binReplaceFunc(bin_str):
 #     res = ""

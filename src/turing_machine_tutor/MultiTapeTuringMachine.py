@@ -95,6 +95,10 @@ class MultiTapeTuringMachine:
         if(isinstance(inputs, str)):
             for char in inputs:
                 assert char in self.input_alphabet, f"Character '{char}' in string '{item}' is not in the input alphabet"
+            new_inputs = [inputs]
+            for i in range(1,self.num_tapes):
+                new_inputs.append('')
+            inputs = new_inputs
         else:
             assert isinstance(inputs, list), "Inputs is not a list"
             if(isinstance(inputs[0], list)):
