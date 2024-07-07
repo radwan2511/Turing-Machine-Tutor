@@ -215,7 +215,7 @@ class TuringMachine:
             return (f"TuringMachine(\n"
                     f"    states={self.states},\n"
                     f"    input_alphabet={self.input_alphabet},\n"
-                    f"    tape_alphabet={self.tape_alphabet},\n"
+                    f"    tape_symbols={self.tape_alphabet},\n"
                     f"    transitions={{\n        {transitions_str}\n    }},\n"
                     f"    initial_state='{self.initial_state}',\n"
                     f"    accept_states={self.accept_states},\n"

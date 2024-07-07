@@ -48,5 +48,12 @@ class ConcatenateTM(CombinedTuringMachine):
     # def get_input_alphabet(self):
     #     return self.get_input_alphabet()
     
-    # def __str__(self):
-    #     return self.__str__()
+    def __str__(self):
+            #__init__(self, tm1name: str, TMObj1:TuringMachine, *additionalTMs):
+            st = ""
+            for t in self.turing_machines:
+                st += ",'"+t.name +"',"+t.__str__()
+            st = st[1:]
+
+            st_res = f"ConcatenateTM({st})"
+            return st_res 

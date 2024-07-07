@@ -1,4 +1,5 @@
-class next:
+
+class Next:
     def __init__(self, state, new_symbol,action):
         self.state = state  ## type is State
         self.symbol=new_symbol ## symbol is string - one char
@@ -13,4 +14,4 @@ class next:
         return function(1)
 
     def __str__(self):
-        return f"next('{self.state}', '{self.symbol}', '{self.action}')"
+        return f"Next('{self.state}', '{self.symbol}', '{self.action}')"

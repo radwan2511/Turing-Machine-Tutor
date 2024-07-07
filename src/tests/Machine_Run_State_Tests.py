@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from turing_machine_tutor.TuringMachine import TuringMachine
 from turing_machine_tutor.machine_run_state import Machine_Run_State
-from turing_machine_tutor.next import next
+from turing_machine_tutor.Next import Next
 
 import unittest
 
@@ -15,7 +15,7 @@ import unittest
 class Machine_Run_State_Tests(unittest.TestCase):
     # test execute_config function
     def test_execute_config_success(self):
-        config_test=next("q0", "a", "R")
+        config_test=Next("q0", "a", "R")
         machine_run_state_test=Machine_Run_State(["t","e","s","t"],0,"q1")
         #assume this transition ('q1','t') -> ('q0','a','R') exists
         machine_run_state_test.execute_config(config_test)
@@ -25,7 +25,7 @@ class Machine_Run_State_Tests(unittest.TestCase):
 
 
     def test_execute_config_insert_blank_to_the_left(self):
-        config_test=next("q0", "t", "L")
+        config_test=Next("q0", "t", "L")
         machine_run_state_test=Machine_Run_State(["t","e","s","t"],0,"q1")
         #assume this transition ('q1','t') -> ('q0','t','L') exists
         machine_run_state_test.execute_config(config_test)
@@ -34,7 +34,7 @@ class Machine_Run_State_Tests(unittest.TestCase):
         self.assertEquals(machine_run_state_test.tape, ["t","e","s","t"])
 
     def test_execute_config_insert_blank_to_the_right(self):
-        config_test=next("q0", "t", "R")
+        config_test=Next("q0", "t", "R")
         machine_run_state_test=Machine_Run_State(["t","e","s","t"],3,"q1")
         #assume this transition ('q1','t') -> ('q0','t','R') exists
         machine_run_state_test.execute_config(config_test)
@@ -43,7 +43,7 @@ class Machine_Run_State_Tests(unittest.TestCase):
         self.assertEquals(machine_run_state_test.tape, ["t","e","s","t","B"])
 
     def test_execute_config_stay_option(self):
-        config_test=next("q0", "t", "S")
+        config_test=Next("q0", "t", "S")
         machine_run_state_test=Machine_Run_State(["t","e","s","t"],3,"q1")
         #assume this transition ('q1','t') -> ('q0','t','S') exists
         machine_run_state_test.execute_config(config_test)

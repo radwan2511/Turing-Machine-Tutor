@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from turing_machine_tutor.TuringMachine import TuringMachine
 from turing_machine_tutor.CombinedTuringMachine import CombinedTuringMachine
 from turing_machine_tutor.machine_run_state import Machine_Run_State
-from turing_machine_tutor.next import next
+from turing_machine_tutor.Next import Next
 from turing_machine_tutor.IFTuringMachine import IFTuringMachine
 from turing_machine_tutor.TuringMachineController import TuringMachineController
 import unittest
@@ -24,7 +24,7 @@ class TestTuringMachineController(unittest.TestCase):
                 if n_v == None:
                     self.assertEqual("TM cannot be None", str(e))
                 else:
-                    self.assertEqual("TM cannot be Not (TuringMachine / IFTuringMachine / CombinedTuringMachine) Object", str(e))
+                    self.assertEqual("TM cannot be Not (TuringMachine / IFTuringMachine / CombinedTuringMachine / WhileTuringMachine / ConcatenateTM / MultiTapeTuringMachine) Object", str(e))
     ###############################################################################################################
     # test TM Controller add_turing_machine function
     def test_TuringMachineController_Add_WithNotValid2TM(self):
@@ -33,11 +33,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -58,11 +58,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -83,11 +83,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -141,11 +141,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -167,11 +167,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -193,11 +193,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -219,11 +219,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -245,11 +245,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -272,9 +272,9 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1'},
             tape_symbols={'0', '1', 'B'},
             transitions={
-                ('q0', '0'): next('q0', '0', 'R'),
-                ('q0', '1'): next('q0', '0', 'R'),
-                ('q0', 'B'): next('q1', 'B', 'R')
+                ('q0', '0'): Next('q0', '0', 'R'),
+                ('q0', '1'): Next('q0', '0', 'R'),
+                ('q0', 'B'): Next('q1', 'B', 'R')
             },
             initial_state='q0',
             accept_states={'q1'},
@@ -298,18 +298,18 @@ class TestTuringMachineController(unittest.TestCase):
     input_alphabet={'0', '1'},
     tape_symbols={'0', '1', 'B'},
     transitions={
-        ('q0', '0'): next('q1', '0', 'R'),
-        ('q0', '1'): next('q1', '1', 'R'),
+        ('q0', '0'): Next('q1', '0', 'R'),
+        ('q0', '1'): Next('q1', '1', 'R'),
 
-        ('q1', '0'): next('q2', '0', 'R'),
-        ('q1', '1'): next('q2', '1', 'R'),
+        ('q1', '0'): Next('q2', '0', 'R'),
+        ('q1', '1'): Next('q2', '1', 'R'),
 
-        ('q2', '0'): next('q3', '0', 'R'),
-        ('q2', '1'): next('q3', '0', 'R'),
+        ('q2', '0'): Next('q3', '0', 'R'),
+        ('q2', '1'): Next('q3', '0', 'R'),
         
-        ('q3', '0'): next('q6', '0', 'R'),
-        ('q3', '1'): next('q6', '1', 'R'),
-        ('q3', 'B'): next('q5', 'B', 'S')
+        ('q3', '0'): Next('q6', '0', 'R'),
+        ('q3', '1'): Next('q6', '1', 'R'),
+        ('q3', 'B'): Next('q5', 'B', 'S')
     },
     initial_state='q0',
     accept_states={'q5'},
@@ -321,9 +321,9 @@ class TestTuringMachineController(unittest.TestCase):
     input_alphabet={'0', '1'},
     tape_symbols={'0', '1', 'B'},
     transitions={
-        ('q0', '0'): next('q0', '0', 'R'),
-        ('q0', '1'): next('q0', '0', 'R'),
-        ('q0', 'B'): next('q1', 'B', 'R')
+        ('q0', '0'): Next('q0', '0', 'R'),
+        ('q0', '1'): Next('q0', '0', 'R'),
+        ('q0', 'B'): Next('q1', 'B', 'R')
     },
     initial_state='q0',
     accept_states={'q1'},
@@ -335,9 +335,9 @@ class TestTuringMachineController(unittest.TestCase):
     input_alphabet={'0', '1'},
     tape_symbols={'0', '1', 'B'},
     transitions={
-        ('q0', '0'): next('q0', '1', 'R'),
-        ('q0', '1'): next('q0', '1', 'R'),
-        ('q0', 'B'): next('q1', 'B', 'R')
+        ('q0', '0'): Next('q0', '1', 'R'),
+        ('q0', '1'): Next('q0', '1', 'R'),
+        ('q0', 'B'): Next('q1', 'B', 'R')
     },
     initial_state='q0',
     accept_states={'q1'},
@@ -346,10 +346,10 @@ class TestTuringMachineController(unittest.TestCase):
 
         try:
             res = TuringMachineController()
-            result = IFTuringMachine()
-            result.setIfTM(ifTm, "myIf")
-            result.setThenTM(thenTm,"mythen")
-            result.setElseTM(elseTm,"myelse")
+            result = IFTuringMachine("myIf", ifTm, "mythen", thenTm, "myelse", elseTm)
+            # result.setIfTM(ifTm, "myIf")
+            # result.setThenTM(thenTm,"mythen")
+            # result.setElseTM(elseTm,"myelse")
             res.add_turing_machine("myIFTM", result)
             self.assertEqual(''.join((res.run_turing_machine("myIFTM","001").tape)).replace('B',''),"000")
             self.assertEqual(''.join((res.run_turing_machine("myIFTM","001011").tape)).replace('B',''),"111111")
@@ -366,11 +366,11 @@ class TestTuringMachineController(unittest.TestCase):
                 input_alphabet={'0', '1', 'X', 'Y', 'B'},
                 tape_symbols={'0', '1', 'X', 'Y', 'B'},
                 transitions={
-                    ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                    ('q0', '1'): next('q3', '1', 'S'),
-                    ('q0', 'X'): next('q3', 'X', 'S'),
-                    ('q0', 'Y'): next('q3', 'Y', 'S'),
-                    ('q0', 'B'): next('q3', 'B', 'S')
+                    ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                    ('q0', '1'): Next('q3', '1', 'S'),
+                    ('q0', 'X'): Next('q3', 'X', 'S'),
+                    ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                    ('q0', 'B'): Next('q3', 'B', 'S')
                 },
                 initial_state='q0',
                 accept_states={'q2'},
@@ -381,11 +381,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q0', '0', 'R'),  # Step 2 move right to the first 1
-                ('q0', '1'): next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q0', '0', 'R'),  # Step 2 move right to the first 1
+                ('q0', '1'): Next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -397,11 +397,11 @@ class TestTuringMachineController(unittest.TestCase):
                 input_alphabet={'0', '1', 'X', 'Y', 'B'},
                 tape_symbols={'0', '1', 'X', 'Y', 'B'},
                 transitions={
-                    ('q0', '0'): next('q3', '0', 'S'),  # Step 3 change 1 to Y
-                    ('q0', '1'): next('q2', 'Y', 'L'),
-                    ('q0', 'X'): next('q3', 'X', 'S'),
-                    ('q0', 'Y'): next('q3', 'Y', 'S'),
-                    ('q0', 'B'): next('q3', 'B', 'S')
+                    ('q0', '0'): Next('q3', '0', 'S'),  # Step 3 change 1 to Y
+                    ('q0', '1'): Next('q2', 'Y', 'L'),
+                    ('q0', 'X'): Next('q3', 'X', 'S'),
+                    ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                    ('q0', 'B'): Next('q3', 'B', 'S')
                 },
                 initial_state='q0',
                 accept_states={'q2'},
@@ -413,11 +413,11 @@ class TestTuringMachineController(unittest.TestCase):
                 input_alphabet={'0', '1', 'X', 'Y', 'B'},
                 tape_symbols={'0', '1', 'X', 'Y', 'B'},
                 transitions={
-                    ('q0', '0'): next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
-                    ('q0', '1'): next('q3', '1', 'S'),
-                    ('q0', 'X'): next('q2', 'X', 'R'),
-                    ('q0', 'Y'): next('q0', 'Y', 'L'),
-                    ('q0', 'B'): next('q3', 'B', 'R')
+                    ('q0', '0'): Next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
+                    ('q0', '1'): Next('q3', '1', 'S'),
+                    ('q0', 'X'): Next('q2', 'X', 'R'),
+                    ('q0', 'Y'): Next('q0', 'Y', 'L'),
+                    ('q0', 'B'): Next('q3', 'B', 'R')
                 },
                 initial_state='q0',
                 accept_states={'q2'},
@@ -430,11 +430,11 @@ class TestTuringMachineController(unittest.TestCase):
                 input_alphabet={'0', '1', 'X', 'Y', 'B'},
                 tape_symbols={'0', '1', 'X', 'Y', 'B'},
                 transitions={
-                    ('q0', '0'): next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                    ('q0', '1'): next('q2', '1', 'S'),
-                    ('q0', 'X'): next('q0', 'X', 'R'),
-                    ('q0', 'Y'): next('q0', 'Y', 'R'),
-                    ('q0', 'B'): next('q3', 'B', 'S')
+                    ('q0', '0'): Next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                    ('q0', '1'): Next('q2', '1', 'S'),
+                    ('q0', 'X'): Next('q0', 'X', 'R'),
+                    ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                    ('q0', 'B'): Next('q3', 'B', 'S')
                 },
                 initial_state='q0',
                 accept_states={'q2'},
@@ -445,11 +445,11 @@ class TestTuringMachineController(unittest.TestCase):
                 input_alphabet={'0', '1', 'X', 'Y', 'B'},
                 tape_symbols={'0', '1', 'X', 'Y', 'B'},
                 transitions={
-                    ('q0', '0'): next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                    ('q0', '1'): next('q3', '1', 'S'),
-                    ('q0', 'X'): next('q0', 'X', 'R'),
-                    ('q0', 'Y'): next('q0', 'Y', 'R'),
-                    ('q0', 'B'): next('q2', 'B', 'S')
+                    ('q0', '0'): Next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                    ('q0', '1'): Next('q3', '1', 'S'),
+                    ('q0', 'X'): Next('q0', 'X', 'R'),
+                    ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                    ('q0', 'B'): Next('q2', 'B', 'S')
                 },
                 initial_state='q0',
                 accept_states={'q2'},
@@ -491,11 +491,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -506,11 +506,11 @@ class TestTuringMachineController(unittest.TestCase):
         input_alphabet={'0', '1', 'X', 'Y', 'B'},
         tape_symbols={'0', '1', 'X', 'Y', 'B'},
         transitions={
-            ('q0', '0'): next('q0', '0', 'R'),  # Step 2 move right to the first 1
-            ('q0', '1'): next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
-            ('q0', 'X'): next('q0', 'X', 'R'),
-            ('q0', 'Y'): next('q0', 'Y', 'R'),
-            ('q0', 'B'): next('q3', 'B', 'S')
+            ('q0', '0'): Next('q0', '0', 'R'),  # Step 2 move right to the first 1
+            ('q0', '1'): Next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
+            ('q0', 'X'): Next('q0', 'X', 'R'),
+            ('q0', 'Y'): Next('q0', 'Y', 'R'),
+            ('q0', 'B'): Next('q3', 'B', 'S')
         },
         initial_state='q0',
         accept_states={'q2'},
@@ -522,11 +522,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 3 change 1 to Y
-                ('q0', '1'): next('q2', 'Y', 'L'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 3 change 1 to Y
+                ('q0', '1'): Next('q2', 'Y', 'L'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -538,11 +538,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q2', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'L'),
-                ('q0', 'B'): next('q3', 'B', 'R')
+                ('q0', '0'): Next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q2', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'L'),
+                ('q0', 'B'): Next('q3', 'B', 'R')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -555,11 +555,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q2', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q2', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -570,11 +570,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q2', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q2', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -610,11 +610,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -625,11 +625,11 @@ class TestTuringMachineController(unittest.TestCase):
         input_alphabet={'0', '1', 'X', 'Y', 'B'},
         tape_symbols={'0', '1', 'X', 'Y', 'B'},
         transitions={
-            ('q0', '0'): next('q0', '0', 'R'),  # Step 2 move right to the first 1
-            ('q0', '1'): next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
-            ('q0', 'X'): next('q0', 'X', 'R'),
-            ('q0', 'Y'): next('q0', 'Y', 'R'),
-            ('q0', 'B'): next('q3', 'B', 'S')
+            ('q0', '0'): Next('q0', '0', 'R'),  # Step 2 move right to the first 1
+            ('q0', '1'): Next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
+            ('q0', 'X'): Next('q0', 'X', 'R'),
+            ('q0', 'Y'): Next('q0', 'Y', 'R'),
+            ('q0', 'B'): Next('q3', 'B', 'S')
         },
         initial_state='q0',
         accept_states={'q2'},
@@ -641,11 +641,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 3 change 1 to Y
-                ('q0', '1'): next('q2', 'Y', 'L'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 3 change 1 to Y
+                ('q0', '1'): Next('q2', 'Y', 'L'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -657,11 +657,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q2', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'L'),
-                ('q0', 'B'): next('q3', 'B', 'R')
+                ('q0', '0'): Next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q2', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'L'),
+                ('q0', 'B'): Next('q3', 'B', 'R')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -674,11 +674,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q2', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q2', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -689,11 +689,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q2', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q2', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -713,7 +713,7 @@ class TestTuringMachineController(unittest.TestCase):
         not_valid_list = [None, 5, [5], {5}, ["55", "5"], "test"]
         for n_v in not_valid_list:
             try:
-                result = result.validate_turing_machine("myCombined", n_v)
+                result.validate_turing_machine("myCombined", n_v)
             except Exception as e:
                 if n_v == None:
                     self.assertEqual("func cannot be None",str(e))
@@ -723,9 +723,9 @@ class TestTuringMachineController(unittest.TestCase):
         not_valid_list = [func11, func2, func3]
         for n_v in not_valid_list:
             try:
-                result = result.validate_turing_machine("myCombined", n_v)
+                result.validate_turing_machine("myCombined", n_v)
             except Exception as e:
-                self.assertEqual("func cannot be function object that doesnt get string input and output True/False (boolean)",str(e))
+                self.assertEqual("func cannot be function object that doesnt get string input and output True/False (boolean) or string",str(e))
     ###############################################################################################################
     # test TuringMachineController validate function with not valid func input
     def test_TuringMachineController_Validate_NotValid3TMInput(self):
@@ -734,11 +734,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -749,11 +749,11 @@ class TestTuringMachineController(unittest.TestCase):
         input_alphabet={'0', '1', 'X', 'Y', 'B'},
         tape_symbols={'0', '1', 'X', 'Y', 'B'},
         transitions={
-            ('q0', '0'): next('q0', '0', 'R'),  # Step 2 move right to the first 1
-            ('q0', '1'): next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
-            ('q0', 'X'): next('q0', 'X', 'R'),
-            ('q0', 'Y'): next('q0', 'Y', 'R'),
-            ('q0', 'B'): next('q3', 'B', 'S')
+            ('q0', '0'): Next('q0', '0', 'R'),  # Step 2 move right to the first 1
+            ('q0', '1'): Next('q2', '1', 'S'),  # if you do not find symbol 1, reject the language
+            ('q0', 'X'): Next('q0', 'X', 'R'),
+            ('q0', 'Y'): Next('q0', 'Y', 'R'),
+            ('q0', 'B'): Next('q3', 'B', 'S')
         },
         initial_state='q0',
         accept_states={'q2'},
@@ -765,11 +765,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 3 change 1 to Y
-                ('q0', '1'): next('q2', 'Y', 'L'),
-                ('q0', 'X'): next('q3', 'X', 'S'),
-                ('q0', 'Y'): next('q3', 'Y', 'S'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 3 change 1 to Y
+                ('q0', '1'): Next('q2', 'Y', 'L'),
+                ('q0', 'X'): Next('q3', 'X', 'S'),
+                ('q0', 'Y'): Next('q3', 'Y', 'S'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -781,11 +781,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q2', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'L'),
-                ('q0', 'B'): next('q3', 'B', 'R')
+                ('q0', '0'): Next('q0', '0', 'L'),  # Step 4 Move Left to Leftmost 0
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q2', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'L'),
+                ('q0', 'B'): Next('q3', 'B', 'R')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -798,11 +798,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q2', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q3', 'B', 'S')
+                ('q0', '0'): Next('q2', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q2', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q3', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -813,11 +813,11 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1', 'X', 'Y', 'B'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
-                ('q0', '1'): next('q3', '1', 'S'),
-                ('q0', 'X'): next('q0', 'X', 'R'),
-                ('q0', 'Y'): next('q0', 'Y', 'R'),
-                ('q0', 'B'): next('q2', 'B', 'S')
+                ('q0', '0'): Next('q3', '0', 'S'),  # Step 6 check if all turing machine tape is X and Y ( there is no 1 and 0 left on the tape)
+                ('q0', '1'): Next('q3', '1', 'S'),
+                ('q0', 'X'): Next('q0', 'X', 'R'),
+                ('q0', 'Y'): Next('q0', 'Y', 'R'),
+                ('q0', 'B'): Next('q2', 'B', 'S')
             },
             initial_state='q0',
             accept_states={'q2'},
@@ -855,16 +855,16 @@ class TestTuringMachineController(unittest.TestCase):
             input_alphabet={'0', '1'},
             tape_symbols={'0', '1', 'X', 'Y', 'B'},
             transitions={
-                ('q0', '0'): next('q1', 'X', 'R'),  # Step 1 change 0 to X
-                ('q0', 'Y'): next('q3', 'Y', 'R'),
-                ('q1', '0'): next('q1', '0', 'R'),
-                ('q1', '1'): next('q2', 'Y', 'L'),
-                ('q1', 'Y'): next('q1', 'Y', 'R'),
-                ('q2', '0'): next('q2', '0', 'L'),
-                ('q2', 'X'): next('q0', 'X', 'R'),
-                ('q2', 'Y'): next('q2', 'Y', 'L'),
-                ('q3', 'Y'): next('q3', 'Y', 'R'),
-                ('q3', 'B'): next('q4', 'B', 'L')
+                ('q0', '0'): Next('q1', 'X', 'R'),  # Step 1 change 0 to X
+                ('q0', 'Y'): Next('q3', 'Y', 'R'),
+                ('q1', '0'): Next('q1', '0', 'R'),
+                ('q1', '1'): Next('q2', 'Y', 'L'),
+                ('q1', 'Y'): Next('q1', 'Y', 'R'),
+                ('q2', '0'): Next('q2', '0', 'L'),
+                ('q2', 'X'): Next('q0', 'X', 'R'),
+                ('q2', 'Y'): Next('q2', 'Y', 'L'),
+                ('q3', 'Y'): Next('q3', 'Y', 'R'),
+                ('q3', 'B'): Next('q4', 'B', 'L')
             },
             initial_state='q0',
             accept_states={'q4'},

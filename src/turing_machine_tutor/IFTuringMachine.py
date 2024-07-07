@@ -5,13 +5,16 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from turing_machine_tutor.TuringMachine import TuringMachine
 
 class IFTuringMachine:
-    def __init__(self, ifTM, ThenTM, elseTM):
+    def __init__(self, ifname,ifTM,thenName, ThenTM, elsename, elseTM):
         self.name = ""
-        self.ifTm = self.setIfTM(ifTM, "IfTM")
+        self.setIfTM(ifTM, ifname)
         #self.ifName = ""
-        self.thenTm = self.setThenTM(ThenTM, "thenTM")
+        self.setThenTM(ThenTM, thenName)
         #self.thenName = ""
-        self.elseTm = self.setElseTM(elseTM, "ElseTM")
+        try:
+            self.setElseTM(elseTM, elsename)
+        except:
+            pass
         #self.elseName = ""
         self.resultTM = None
 
@@ -61,6 +64,7 @@ class IFTuringMachine:
         if(self.thenTm == None or (not isinstance(self.thenTm, TuringMachine))):
             raise Exception("Cannot run, Missing Then TM. Please Use SetThentm to set the turing machine")
         # first run ifTm
+        self.resultTM = self.thenTm
         machine_run_state = self.ifTm.run(input_str)
         if (machine_run_state.state in self.ifTm.accept_states):
             # then run thenTm
@@ -79,14 +83,18 @@ class IFTuringMachine:
         return self.setIfTM.input_alphabet
     
     def __str__(self):
-            st = ""
-            if self.ifTm != None and TuringMachine(self.ifTm,TuringMachine):
-                st += "IF TM"
-                st += ":::\n" + self.ifTm.__str__() + "\n"
-            if self.thenTm != None and TuringMachine(self.thenTm,TuringMachine):
-                st += "THEN TM"
-                st += ":::\n" + self.thenTm.__str__() + "\n"
-            if self.elseTm != None and TuringMachine(self.elseTm,TuringMachine):
-                st += "ELSE TM"
-                st += ":::\n" + self.elseTm.__str__() + "\n"
+            # st = ""
+            # if self.ifTm != None and TuringMachine(self.ifTm,TuringMachine):
+            #     st += "IF TM"
+            #     st += ":::\n" + self.ifTm.__str__() + "\n"
+            # if self.thenTm != None and TuringMachine(self.thenTm,TuringMachine):
+            #     st += "THEN TM"
+            #     st += ":::\n" + self.thenTm.__str__() + "\n"
+            # if self.elseTm != None and TuringMachine(self.elseTm,TuringMachine):
+            #     st += "ELSE TM"
+            #     st += ":::\n" + self.elseTm.__str__() + "\n"
+            # return st
+            
+            # IFTuringMachine("myif", ifTm, "mythen", thenTm, "myelse", elseTm)
+            st = f"IFTuringMachine('{self.ifTm.name}', {self.ifTm}, '{self.thenTm.name}', {self.thenTm}, '{self.elseTm.name}', {self.elseTm})"
             return st
