@@ -26,6 +26,9 @@ class Challenge:
                     raise Exception()
             if function_string!=None:
                 str_msg=self.validateFuncReturnOnlyBool_string_input(function_string)
+                str_msg2 = ""
+                if len(str_msg) != 0:
+                    str_msg2 = self.validateFuncReturnOnlyStr(function_that_accepts_the_language_of_tm, input_alphabet)
             else:
                 str_msg = self.validateFuncReturnOnlyBool(function_that_accepts_the_language_of_tm)
                 str_msg2 = ""

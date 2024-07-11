@@ -4,10 +4,10 @@ import time
 import os
 import sys
 
-# import gspread
-# import pandas as pd
-# from google.colab import auth
-# from google.auth import default
+import gspread
+import pandas as pd
+from google.colab import auth
+from google.auth import default
 # Add the parent directory of mypackage to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from turing_machine_tutor.TuringMachine import TuringMachine
@@ -497,13 +497,11 @@ class TuringMachineController:
 
 
     def convert_string_to_set(self,given_string):
-        clean_string = given_string.strip('{}')
-        clean_string = clean_string.replace('","', '", "')
-        elements = clean_string.split(', ')
-        clean_elements = [elem.strip('"') for elem in elements]
-        cleaner_elements = [elem.strip("'") for elem in clean_elements]
-        string_set = set(cleaner_elements)
-        return string_set
+        corrected_true = given_string.replace('true', 'True')
+        corrected_string = corrected_true.replace('false', 'False')
+        list_of_tuples = ast.literal_eval(corrected_string)
+
+        return list_of_tuples
 
     def extract_func_name(self,function_string):
         def_index = function_string.find('def ')
@@ -541,13 +539,19 @@ class TuringMachineController:
                 edge_cases = self.convert_string_to_set(row["edge_cases"])
             alphabet_string = row["input_alphabet"]
             must_pass = self.convert_string_to_set(row["must_pass"])
-            must_fail = self.convert_string_to_set(row["must_fail"])
+            must_fail = None
+            if "must_fail" in row.keys():
+                must_fail_string = row['must_fail']
+                if must_fail_string != None and must_fail_string != '':
+                    must_fail = self.convert_string_to_set(must_fail_string)
+
             input_alphabet = self.convert_string_to_set(alphabet_string)
             function_name = self.extract_func_name(function_string)
             function_object = exec_globals[function_name]
             new_challenge = Challenge(name, input_alphabet, description, function_object, edge_cases,function_string)
             new_challenge.MustPass(must_pass)
-            new_challenge.MustFail(must_fail)
+            if must_fail != None:
+                new_challenge.MustFail(must_fail)
             challenges[name]=new_challenge
         machines_url = 'https://docs.google.com/spreadsheets/d/1eQYfMXWgzz8PyRBzIaUqlAvx1Vm7ASXujEaY9WDpG2s/edit?gid=0#gid=0'
         gc = gspread.authorize(creds)

@@ -129,7 +129,8 @@ def is_0n1n(s):
 
 # #
 controller = TuringMachineController()
-controller.add_challenge("0n1n",{'a'},"turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
+#controller.add_challenge("0n1n",{'a'},"turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
+controller.collect_machines_and_challenges()
 
 # controller.add_challenge("random_shit","turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
 # controller.add_challenge("random_shit_2","turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
@@ -771,6 +772,8 @@ tm_string = '''TuringMachine(
     accept_states={'q1'},
     reject_states={'q2'}
 )'''
+
+
 
 # tm_object = eval(tm_string)
 # ok=tm_object.run("ab$ab")
