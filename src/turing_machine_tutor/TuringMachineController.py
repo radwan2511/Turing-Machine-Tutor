@@ -497,7 +497,9 @@ class TuringMachineController:
 
 
     def convert_string_to_set(self,given_string):
-        list_of_tuples = ast.literal_eval(given_string)
+        corrected_true = given_string.replace('true', 'True')
+        corrected_string = corrected_true.replace('false', 'False')
+        list_of_tuples = ast.literal_eval(corrected_string)
 
         return list_of_tuples
 
