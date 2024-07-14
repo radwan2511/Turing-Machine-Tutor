@@ -91,8 +91,9 @@ class MultiTapeTuringMachine:
             
 
     def initialize_tapes(self, inputs, flag=None):
-
-        if(isinstance(inputs, str)):
+        if (inputs == '' or inputs == ['']):
+            pass
+        elif(isinstance(inputs, str)):
             for char in inputs:
                 assert char in self.input_alphabet, f"Character '{char}' in string '{item}' is not in the input alphabet"
             new_inputs = [inputs]
@@ -119,6 +120,10 @@ class MultiTapeTuringMachine:
                     assert char in self.input_alphabet, f"Character '{char}' in string '{item}' is not in the input alphabet"
 
         self.current_state = self.start_state
+
+        for i in range(len(inputs), self.num_tapes):
+            inputs.append('')
+        
         for i in range(self.num_tapes):
             self.tapes[i] = list(inputs[i]) + ['B']
             if flag == None:

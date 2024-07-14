@@ -258,7 +258,7 @@ class TuringMachineController:
         # first test mustPass and mustFail#############################################################################################
         if self.__challenges[turing_name].mustPass != None:
             print("testing Must Pass cases:\n ")
-            for case in self.__challenges[turing_name].mustPass: ##test must pass cases
+            for case, res0 in self.__challenges[turing_name].mustPass: ##test must pass cases
                 final_machine_state=None
                 try:
                     final_machine_state = self.__turing_machines[turing_name].run(case if not isinstance(self.__turing_machines[turing_name], MultiTapeTuringMachine) else [case])
@@ -283,7 +283,7 @@ class TuringMachineController:
 
         if self.__challenges[turing_name].mustFail != None:
             print("testing Must Fail cases:\n ")
-            for case in self.__challenges[turing_name].mustFail: ##test must Fail cases
+            for case, res0 in self.__challenges[turing_name].mustFail: ##test must Fail cases
                 final_machine_state=None
                 try:
                     final_machine_state = self.__turing_machines[turing_name].run(case if not isinstance(self.__turing_machines[turing_name], MultiTapeTuringMachine) else [case])
@@ -608,7 +608,7 @@ class TuringMachineController:
             return
         # first test mustPass and mustFail#############################################################################################
         if challenge.mustPass != None:
-            for case in challenge.mustPass:  ##test must pass cases
+            for case , res0 in challenge.mustPass:  ##test must pass cases
                 final_machine_state = None
                 try:
                     final_machine_state = machine.run(case)
@@ -626,7 +626,7 @@ class TuringMachineController:
                     return False
 
         if challenge.mustFail != None:
-            for case in challenge.mustFail:  ##test must Fail cases
+            for case, res0 in challenge.mustFail:  ##test must Fail cases
                 final_machine_state = None
                 try:
                     final_machine_state = machine.run(case)
