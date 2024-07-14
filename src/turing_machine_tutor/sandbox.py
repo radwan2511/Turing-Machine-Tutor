@@ -107,30 +107,30 @@ from turing_machine_tutor.Call_Turing_Machine import Call_Turing_Machine
 # # # print(anbn_turing_machine.given_state_is_in_acceptance(mrs.state))
 
 
-def is_0n1n(s):
-    if(len(s) < 2):
-        return False
-    elif(len(s) == 2 and s != "01"):
-        return False
-    elif(len(s) == 2 and s == "01"):
-        return True
-    st = s.split('01')
-    if(len(st) != 2):
-        return False
-    if(len(st[0]) != len(st[1])):
-        return False
-    for i in st[0]:
-        if i != '0':
-            return False
-    for i in st[1]:
-        if i != '1':
-            return False
-    return True
+# def is_0n1n(s):
+#     if(len(s) < 2):
+#         return False
+#     elif(len(s) == 2 and s != "01"):
+#         return False
+#     elif(len(s) == 2 and s == "01"):
+#         return True
+#     st = s.split('01')
+#     if(len(st) != 2):
+#         return False
+#     if(len(st[0]) != len(st[1])):
+#         return False
+#     for i in st[0]:
+#         if i != '0':
+#             return False
+#     for i in st[1]:
+#         if i != '1':
+#             return False
+#     return True
 
 # #
 controller = TuringMachineController()
 #controller.add_challenge("0n1n",{'a'},"turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
-controller.collect_machines_and_challenges()
+# controller.collect_machines_and_challenges()
 
 # controller.add_challenge("random_shit","turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
 # controller.add_challenge("random_shit_2","turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
@@ -694,84 +694,84 @@ controller.collect_machines_and_challenges()
 
 
 
-function_string='''def is_wDw(txt):
-  l = len(txt)
-  if l%2 == 0:
-      return False
-  h = l//2
-  for i in range(l):
-      if i == h:
-          if txt[i] != '$':
-            return  False
-      elif txt[i] != 'a' and txt[i] != 'b':
-            return False
-  left=txt[:h]
-  right=txt[h+1:]
-  if left==right:
-    return True
-  else:
-    return False'''
-# Given string representation of TuringMachine
-tm_string = '''TuringMachine(
-    states={'q3', 'q8', 'q10', 'q5', 'q7', 'q9', 'q0', 'q2', 'q11', 'q6', 'q1', 'q4'},
-    input_alphabet={'a', '$', 'b'},
-    tape_symbols={'$', 'b', 'B', 'a', 'E'},
-    transitions={
-        ('q0', 'a'): Next('q3', 'E', 'R'),
-        ('q0', 'b'): Next('q4', 'E', 'R'),
-        ('q0', 'B'): Next('q2', 'B', 'S'),
-        ('q0', '$'): Next('q11', '$', 'R'),
-        ('q0', 'E'): Next('q2', 'E', 'S'),
-        ('q3', 'a'): Next('q3', 'a', 'R'),
-        ('q3', 'b'): Next('q3', 'b', 'R'),
-        ('q3', 'B'): Next('q2', 'B', 'S'),
-        ('q3', '$'): Next('q5', '$', 'R'),
-        ('q3', 'E'): Next('q2', 'E', 'R'),
-        ('q5', 'a'): Next('q7', 'E', 'S'),
-        ('q5', 'b'): Next('q2', 'b', 'S'),
-        ('q5', 'B'): Next('q2', 'B', 'S'),
-        ('q5', '$'): Next('q2', '$', 'R'),
-        ('q5', 'E'): Next('q5', 'E', 'R'),
-        ('q7', 'a'): Next('q2', 'b', 'S'),
-        ('q7', 'b'): Next('q2', 'b', 'S'),
-        ('q7', 'B'): Next('q2', 'B', 'S'),
-        ('q7', '$'): Next('q9', '$', 'L'),
-        ('q7', 'E'): Next('q7', 'E', 'L'),
-        ('q9', 'a'): Next('q9', 'a', 'L'),
-        ('q9', 'b'): Next('q9', 'b', 'L'),
-        ('q9', 'B'): Next('q2', 'B', 'S'),
-        ('q9', '$'): Next('q9', '$', 'L'),
-        ('q9', 'E'): Next('q0', 'E', 'R'),
-        ('q11', 'a'): Next('q2', 'b', 'S'),
-        ('q11', 'b'): Next('q2', 'b', 'S'),
-        ('q11', 'B'): Next('q1', 'B', 'S'),
-        ('q11', '$'): Next('q2', '$', 'L'),
-        ('q11', 'E'): Next('q11', 'E', 'R'),
-        ('q4', 'a'): Next('q4', 'a', 'R'),
-        ('q4', 'b'): Next('q4', 'b', 'R'),
-        ('q4', 'B'): Next('q2', 'B', 'S'),
-        ('q4', '$'): Next('q6', '$', 'R'),
-        ('q4', 'E'): Next('q2', 'E', 'R'),
-        ('q6', 'a'): Next('q2', 'a', 'S'),
-        ('q6', 'b'): Next('q8', 'E', 'S'),
-        ('q6', 'B'): Next('q2', 'B', 'S'),
-        ('q6', '$'): Next('q2', '$', 'R'),
-        ('q6', 'E'): Next('q6', 'E', 'R'),
-        ('q8', 'a'): Next('q2', 'b', 'S'),
-        ('q8', 'b'): Next('q2', 'b', 'S'),
-        ('q8', 'B'): Next('q2', 'B', 'S'),
-        ('q8', '$'): Next('q10', '$', 'L'),
-        ('q8', 'E'): Next('q8', 'E', 'L'),
-        ('q10', 'a'): Next('q10', 'a', 'L'),
-        ('q10', 'b'): Next('q10', 'b', 'L'),
-        ('q10', 'B'): Next('q2', 'B', 'S'),
-        ('q10', '$'): Next('q10', '$', 'L'),
-        ('q10', 'E'): Next('q0', 'E', 'R')
-    },
-    initial_state='q0',
-    accept_states={'q1'},
-    reject_states={'q2'}
-)'''
+# function_string='''def is_wDw(txt):
+#   l = len(txt)
+#   if l%2 == 0:
+#       return False
+#   h = l//2
+#   for i in range(l):
+#       if i == h:
+#           if txt[i] != '$':
+#             return  False
+#       elif txt[i] != 'a' and txt[i] != 'b':
+#             return False
+#   left=txt[:h]
+#   right=txt[h+1:]
+#   if left==right:
+#     return True
+#   else:
+#     return False'''
+# # Given string representation of TuringMachine
+# tm_string = '''TuringMachine(
+#     states={'q3', 'q8', 'q10', 'q5', 'q7', 'q9', 'q0', 'q2', 'q11', 'q6', 'q1', 'q4'},
+#     input_alphabet={'a', '$', 'b'},
+#     tape_symbols={'$', 'b', 'B', 'a', 'E'},
+#     transitions={
+#         ('q0', 'a'): Next('q3', 'E', 'R'),
+#         ('q0', 'b'): Next('q4', 'E', 'R'),
+#         ('q0', 'B'): Next('q2', 'B', 'S'),
+#         ('q0', '$'): Next('q11', '$', 'R'),
+#         ('q0', 'E'): Next('q2', 'E', 'S'),
+#         ('q3', 'a'): Next('q3', 'a', 'R'),
+#         ('q3', 'b'): Next('q3', 'b', 'R'),
+#         ('q3', 'B'): Next('q2', 'B', 'S'),
+#         ('q3', '$'): Next('q5', '$', 'R'),
+#         ('q3', 'E'): Next('q2', 'E', 'R'),
+#         ('q5', 'a'): Next('q7', 'E', 'S'),
+#         ('q5', 'b'): Next('q2', 'b', 'S'),
+#         ('q5', 'B'): Next('q2', 'B', 'S'),
+#         ('q5', '$'): Next('q2', '$', 'R'),
+#         ('q5', 'E'): Next('q5', 'E', 'R'),
+#         ('q7', 'a'): Next('q2', 'b', 'S'),
+#         ('q7', 'b'): Next('q2', 'b', 'S'),
+#         ('q7', 'B'): Next('q2', 'B', 'S'),
+#         ('q7', '$'): Next('q9', '$', 'L'),
+#         ('q7', 'E'): Next('q7', 'E', 'L'),
+#         ('q9', 'a'): Next('q9', 'a', 'L'),
+#         ('q9', 'b'): Next('q9', 'b', 'L'),
+#         ('q9', 'B'): Next('q2', 'B', 'S'),
+#         ('q9', '$'): Next('q9', '$', 'L'),
+#         ('q9', 'E'): Next('q0', 'E', 'R'),
+#         ('q11', 'a'): Next('q2', 'b', 'S'),
+#         ('q11', 'b'): Next('q2', 'b', 'S'),
+#         ('q11', 'B'): Next('q1', 'B', 'S'),
+#         ('q11', '$'): Next('q2', '$', 'L'),
+#         ('q11', 'E'): Next('q11', 'E', 'R'),
+#         ('q4', 'a'): Next('q4', 'a', 'R'),
+#         ('q4', 'b'): Next('q4', 'b', 'R'),
+#         ('q4', 'B'): Next('q2', 'B', 'S'),
+#         ('q4', '$'): Next('q6', '$', 'R'),
+#         ('q4', 'E'): Next('q2', 'E', 'R'),
+#         ('q6', 'a'): Next('q2', 'a', 'S'),
+#         ('q6', 'b'): Next('q8', 'E', 'S'),
+#         ('q6', 'B'): Next('q2', 'B', 'S'),
+#         ('q6', '$'): Next('q2', '$', 'R'),
+#         ('q6', 'E'): Next('q6', 'E', 'R'),
+#         ('q8', 'a'): Next('q2', 'b', 'S'),
+#         ('q8', 'b'): Next('q2', 'b', 'S'),
+#         ('q8', 'B'): Next('q2', 'B', 'S'),
+#         ('q8', '$'): Next('q10', '$', 'L'),
+#         ('q8', 'E'): Next('q8', 'E', 'L'),
+#         ('q10', 'a'): Next('q10', 'a', 'L'),
+#         ('q10', 'b'): Next('q10', 'b', 'L'),
+#         ('q10', 'B'): Next('q2', 'B', 'S'),
+#         ('q10', '$'): Next('q10', '$', 'L'),
+#         ('q10', 'E'): Next('q0', 'E', 'R')
+#     },
+#     initial_state='q0',
+#     accept_states={'q1'},
+#     reject_states={'q2'}
+# )'''
 
 
 
@@ -1025,75 +1025,75 @@ tm_string = '''TuringMachine(
 
 
 
-tm1 = MultiTapeTuringMachine(
-    states={'q0', 'q1', 'q2', 'qa', 'qr'},
-    input_alphabet={'0', '1', 'X'},
-    tape_alphabet={'0', '1', 'B', 'X'},
-    transition_function= {
-    # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
-    ('q0', '0'): MultiNext('q1', '0', 'L'),
-    ('q0', '1'): MultiNext('q1',  '1', 'L'),
-    ('q0', 'B'): MultiNext('q1',  'B', 'L'),
-    ('q1', '0'): MultiNext('q1', '0', 'L'),
-    ('q1', '1'): MultiNext('q1',  '1', 'L'),
-    ('q1', 'X'): MultiNext('qa',  'X', 'R')
-},
-    start_state='q0',
-    accept_state={'qa'},
-    reject_state={'qr'},
-    num_tapes=1
-)
+# tm1 = MultiTapeTuringMachine(
+#     states={'q0', 'q1', 'q2', 'qa', 'qr'},
+#     input_alphabet={'0', '1', 'X'},
+#     tape_alphabet={'0', '1', 'B', 'X'},
+#     transition_function= {
+#     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
+#     ('q0', '0'): MultiNext('q1', '0', 'L'),
+#     ('q0', '1'): MultiNext('q1',  '1', 'L'),
+#     ('q0', 'B'): MultiNext('q1',  'B', 'L'),
+#     ('q1', '0'): MultiNext('q1', '0', 'L'),
+#     ('q1', '1'): MultiNext('q1',  '1', 'L'),
+#     ('q1', 'X'): MultiNext('qa',  'X', 'R')
+# },
+#     start_state='q0',
+#     accept_state={'qa'},
+#     reject_state={'qr'},
+#     num_tapes=1
+# )
 
-tm2 = MultiTapeTuringMachine(
-    states={'q0', 'q1', 'q2', 'qa', 'qr'},
-    input_alphabet={'0', '1', 'X'},
-    tape_alphabet={'0', '1', 'B', 'X'},
-    transition_function= {
-    # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
-    ('q0', '0'): MultiNext('q0', '1', 'R'),
-    ('q0', '1'): MultiNext('q0',  '0', 'R'),
-    ('q0', 'B'): MultiNext('qa',  'B', 'S')
-},
-    start_state='q0',
-    accept_state={'qa'},
-    reject_state={'qr'},
-    num_tapes=1
-)
+# tm2 = MultiTapeTuringMachine(
+#     states={'q0', 'q1', 'q2', 'qa', 'qr'},
+#     input_alphabet={'0', '1', 'X'},
+#     tape_alphabet={'0', '1', 'B', 'X'},
+#     transition_function= {
+#     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
+#     ('q0', '0'): MultiNext('q0', '1', 'R'),
+#     ('q0', '1'): MultiNext('q0',  '0', 'R'),
+#     ('q0', 'B'): MultiNext('qa',  'B', 'S')
+# },
+#     start_state='q0',
+#     accept_state={'qa'},
+#     reject_state={'qr'},
+#     num_tapes=1
+# )
 
-tm3 = MultiTapeTuringMachine(
-    states={'qs', 'q0', 'q1', 'q2', 'q3', 'qa', 'qr'},
-    input_alphabet={'0', '1'},
-    tape_alphabet={'0', '1', 'B', 'X'},
-    transition_function= {
-    # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
-    ('qs', '0', 'B'): MultiNext('q0', '0', 'X', 'S', 'R'),
-    ('qs', '1', 'B'): MultiNext('q0', '1', 'X', 'S', 'R'),
-    ('qs', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
+# tm3 = MultiTapeTuringMachine(
+#     states={'qs', 'q0', 'q1', 'q2', 'q3', 'qa', 'qr'},
+#     input_alphabet={'0', '1'},
+#     tape_alphabet={'0', '1', 'B', 'X'},
+#     transition_function= {
+#     # (current_state, tape1_symbol, tape2_symbol): (new_state, tape1_new_symbol, tape2_new_symbol, direction1, direction2)
+#     ('qs', '0', 'B'): MultiNext('q0', '0', 'X', 'S', 'R'),
+#     ('qs', '1', 'B'): MultiNext('q0', '1', 'X', 'S', 'R'),
+#     ('qs', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
 
-    ('q0', '0', 'B'): MultiNext('q1', '0', '0', 'R', 'R'),
-    ('q0', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
-    ('q0', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
+#     ('q0', '0', 'B'): MultiNext('q1', '0', '0', 'R', 'R'),
+#     ('q0', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
+#     ('q0', 'B', 'B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
 
-    ('q1', '0', 'B'): MultiNext('q1', '0', '0', 'R', 'R'),
-    ('q1', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
-    ('q1', 'B', 'B'): MultiNext('q2', 'B', 'B', 'S', 'S'),
-    ('q2', 'B', 'B') : Call_Turing_Machine("move left on tape 2", tm1, [1], 'q3', 'qr'),
+#     ('q1', '0', 'B'): MultiNext('q1', '0', '0', 'R', 'R'),
+#     ('q1', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
+#     ('q1', 'B', 'B'): MultiNext('q2', 'B', 'B', 'S', 'S'),
+#     ('q2', 'B', 'B') : Call_Turing_Machine("move left on tape 2", tm1, [1], 'q3', 'qr'),
 
-    ('q3', 'B', '0') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr'),
-    ('q3', 'B', '1') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr')
-},
-    start_state='qs',
-    accept_state={'qa'},
-    reject_state={'qr'},
-    num_tapes=2
-)
+#     ('q3', 'B', '0') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr'),
+#     ('q3', 'B', '1') : Call_Turing_Machine("replace 0 and 1", tm2, [1], 'qa', 'qr')
+# },
+#     start_state='qs',
+#     accept_state={'qa'},
+#     reject_state={'qr'},
+#     num_tapes=2
+# )
 
-controller.update_turing_machine("multi", tm3)
+# controller.update_turing_machine("multi", tm3)
 
 
-inputs = ['1101', '']
-#result = tm.run(inputs)
-controller.run_turing_machine("multi", inputs)
+# inputs = ['1101', '']
+# #result = tm.run(inputs)
+# controller.run_turing_machine("multi", inputs)
 #controller.run_turing_machine("multi", inputs)
 #tm2.visualize(['1101', ''],1)
 #controller.visualize_step_by_step("multi", inputs)
@@ -1269,3 +1269,5 @@ controller.run_turing_machine("multi", inputs)
 # controller.add_turing_machine("whileTM", whileTM)
 
 # controller.run_turing_machine('whileTM', "1011001")
+
+
