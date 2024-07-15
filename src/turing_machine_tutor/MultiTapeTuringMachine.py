@@ -92,6 +92,8 @@ class MultiTapeTuringMachine:
 
     def initialize_tapes(self, inputs, flag=None):
         if (inputs == '' or inputs == ['']):
+            if(inputs == ''):
+                inputs = ['']
             pass
         elif(isinstance(inputs, str)):
             for char in inputs:
@@ -121,6 +123,7 @@ class MultiTapeTuringMachine:
 
         self.current_state = self.start_state
 
+        
         for i in range(len(inputs), self.num_tapes):
             inputs.append('')
         
