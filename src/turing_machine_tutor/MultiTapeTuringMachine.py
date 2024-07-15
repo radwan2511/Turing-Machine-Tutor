@@ -164,6 +164,8 @@ class MultiTapeTuringMachine:
                         num_b_before_index += 1
                     tapes_edit.append(self.tapes[i][num_b_before_index:])
                     tm.head_positions[index] = self.head_positions[i] - num_b_before_index
+                    if tm.head_positions[index]<0:
+                        tm.head_positions[index] = 0
                     index += 1
                 def remove_B_from_list(char_list2):
                     res = []
