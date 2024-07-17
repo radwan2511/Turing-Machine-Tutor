@@ -1269,5 +1269,3 @@ controller = TuringMachineController()
 # controller.add_turing_machine("whileTM", whileTM)
 
 # controller.run_turing_machine('whileTM', "1011001")
-
-

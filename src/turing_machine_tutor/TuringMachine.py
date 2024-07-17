@@ -149,7 +149,7 @@ class TuringMachine:
         is_all_strings = lambda my_list: all(isinstance(item, str) and len(item) == 1 for item in my_list)
         if(input_string == None or not((isinstance(input_string,list) and is_all_strings(input_string)) or isinstance(input_string,str))):
             raise Exception("Input String cannot be None or not str object or list of chars")
-        max_steps=100*len(input_string)
+        max_steps=100*len(input_string)+10
        # self.reset_turing_machine()
         self.current_machine_state.put_word_on_tape(input_string)
         self.current_machine_state.head_position= head_position

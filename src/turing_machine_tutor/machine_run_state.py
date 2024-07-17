@@ -30,7 +30,10 @@ class Machine_Run_State:
 
 
     def put_word_on_tape(self, input_string):
-        self.tape=list(input_string)
+        if(input_string == ''):
+            self.tape = ['B']
+        else:
+            self.tape=list(input_string)
 
 
 
