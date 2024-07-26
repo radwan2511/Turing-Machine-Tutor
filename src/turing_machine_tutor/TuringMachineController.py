@@ -6,7 +6,7 @@ import sys
 
 import gspread
 import pandas as pd
-from google.colab import auth
+#from google.colab import auth
 from google.auth import default
 # Add the parent directory of mypackage to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -512,7 +512,7 @@ class TuringMachineController:
         return function_name
 
     def collect_machines_and_challenges(self):
-        auth.authenticate_user()
+        #auth.authenticate_user()
         creds, _ = default()
         challenges_url = 'https://docs.google.com/spreadsheets/d/1FB0mj8TfmP93VShGwjy0OFyWgMzefmjBbg6LfgGmbDE/edit?gid=0#gid=0'
         gc = gspread.authorize(creds)
