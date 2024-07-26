@@ -129,6 +129,50 @@ from turing_machine_tutor.Call_Turing_Machine import Call_Turing_Machine
 
 # #
 controller = TuringMachineController()
+
+
+tm_challenge2 = MultiTapeTuringMachine(
+    states={'qs', 'q1', 'q2','q3', 'qa'},
+    input_alphabet={'1'},
+    tape_alphabet={'1', 'X','B'},
+    transition_function={
+    ('qs', '1', 'B'): MultiNext('q1', '1', '1', 'R','R'),
+    ('qs', 'B','B'): MultiNext('qa', 'B', 'B', 'S','S'),
+    ('q1', '1','B'): MultiNext('q2', 'X', 'B', 'R', 'S'),
+    ('q1', 'B','B'): MultiNext('q3', 'B', 'B', 'S', 'L'),
+    ('q2', '1', 'B'): MultiNext('q1', '1', '1', 'R', 'R'),
+    ('q2', 'B','B'): MultiNext('qa', 'B', 'B', 'S', 'S'),
+    ('q3', 'B','1'): MultiNext('qa', 'B', 'B', 'S', 'R')
+    },
+    start_state='qs',
+    accept_state={'qa'},
+    reject_state={},
+    num_tapes=2
+)
+
+controller.add_turing_machine("DivideByTwo",tm_challenge2)
+
+
+tm_challenge3 = MultiTapeTuringMachine(
+    states={'qs', 'q1', 'q2','qr', 'qacc'},
+    input_alphabet={'1'},
+    tape_alphabet={'1', 'X','S', 'B'},
+    transition_function={
+    ('qs', '1', 'B'): Call_Turing_Machine("DivideByTwo", tm_challenge2, [0], 'q1', 'qr'),
+    ('q1', '1', 'B'): MultiNext('qs', '1', '1', 'S', 'R'),
+    ('q1', 'B', 'B'): MultiNext('qacc', 'B', 'B', 'S', 'S'),
+    ('q1', 'B', '1'): MultiNext('q1', 'B', '1', 'S', 'R')
+    },
+    start_state='qs',
+    accept_state={'qacc'},
+    reject_state={'qr'},
+    num_tapes=2
+)
+controller.add_turing_machine("LogBaseTwo",tm_challenge3)
+
+controller.visualize_step_by_step ("LogBaseTwo", "11111111")
+print("shit")
+
 #controller.add_challenge("0n1n",{'a'},"turing machine that accepts 0n1n",is_0n1n,{"0011","01"});
 # controller.collect_machines_and_challenges()
 

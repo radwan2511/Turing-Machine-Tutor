@@ -129,7 +129,7 @@ class MultiTapeTuringMachine:
         
         for i in range(self.num_tapes):
             self.tapes[i] = list(inputs[i]) + ['B']
-            if flag == None:
+            if flag == None or len(self.tapes[i])==1:
                 self.head_positions[i] = 0
 
     def step(self):
